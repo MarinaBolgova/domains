@@ -14,4 +14,46 @@ function my_styles() {
     wp_enqueue_script( 'script-name', get_template_directory_uri() . '/js/example.js', array(), '1.0.0', true );
     wp_enqueue_script( 'bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js', array(), '1.0.0', true );
 }
+
+// модернизируем меню
+//заменяем класс по умолчанию wp на наш
+add_filter( 'nav_menu_css_class', 'add_my_class_to_nav_menu', 10, 2 );
+function add_my_class_to_nav_menu( $classes, $item ){
+    /* $classes содержит
+    Array(
+        [1] => menu-item
+        [2] => menu-item-type-post_type
+        [3] => menu-item-object-page
+        [4] => menu-item-284
+    )
+    */
+    $classes = ['nav-item'];
+
+    return $classes;
+}
+// удаляем id у тега li
+add_filter( 'nav_menu_item_id', '__return_empty_string' );
+
+function add_menu_link_class( $atts, $item, $args ) {
+    if (property_exists($args, 'link_class')){
+        $atts['class'] = $args->link_class;
+    }
+    return $atts;
+}
+add_filter('nav_menu_link_attributes', 'add_menu_link_class', 1, 3 );
+
+
+// Добавляем классы ссылкам
+add_filter( 'nav_menu_link_attributes', 'filter_nav_menu_link_attributes', 10, 4 );
+function filter_nav_menu_link_attributes( $atts, $item, $args, $depth ) {
+
+    if ( $item->current ) {
+        $class = 'active';
+        $atts['class'] = isset( $atts['class'] ) ? "{$atts['class']} $class" : $class;
+    }
+
+    return $atts;
+}
+
 ?>
+

@@ -13,14 +13,20 @@
 
 <header>
     <?php
-    if (is_single()){
-        get_header('single');
-    } else {
+//    if (is_single()){
+//        get_header('single');
+//    } else {
+
+        wp_nav_menu([
+                'container' => 'div',
+                'container_class' => '',
+                'menu_class' => 'nav',
+                'menu_id' => ' ',
+                'link_class' => 'nav-link',
 
 
-
-        wp_nav_menu();
-    }
+        ]);
+//    }
     ?>
 
 </header>
