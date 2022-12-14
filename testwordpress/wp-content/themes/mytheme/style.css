@@ -18,4 +18,33 @@
 .active{
     text-decoration:underline !important;
 
+
+
+}
+.nav-item{
+    list-style-type: none;
+    background-color:white;
+
+
+
+}
+.sub-menu{
+    padding: 0;
+    display: none;
+    position: absolute;
+   /* border: 1px solid #000;*/
+    border-radius: 0 0 10px 10px;
+    border-top: none;
+    box-shadow: black 0px 3px 4px;
+}
+
+.nav-item:hover >.sub-menu{
+    display: block;
+
+}
+.sub-menu .sub-menu{
+    position: absolute;
+    left:100%;
+    top: 0;
+
 }

@@ -23,7 +23,7 @@
                 'menu_class' => 'nav',
                 'menu_id' => ' ',
                 'link_class' => 'nav-link',
-
+                'depth' => 0, // отображение уровней меню
 
         ]);
 //    }

@@ -1,4 +1,9 @@
 <?php
+//подключаем поддержку миниатюр записи
+add_theme_support( 'post-thumbnails' );
+
+
+
 add_action( 'after_setup_theme', 'theme_register_nav_menu' );
 
 function theme_register_nav_menu() {
@@ -54,6 +59,15 @@ function filter_nav_menu_link_attributes( $atts, $item, $args, $depth ) {
 
     return $atts;
 }
-
+// в конце цитаты выводим ссылку "Читать больше"
+add_filter( 'excerpt_more', 'new_excerpt_more' );
+function new_excerpt_more( $more ){
+    global $post;
+    return '... <a href="'. get_permalink($post) . '">[читать далее]</a>';
+}
+//умемньшаем размер цитаты до 20 слов
+add_filter( 'excerpt_length', function(){
+    return 20;
+} );
 ?>
 
