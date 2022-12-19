@@ -69,5 +69,57 @@ function new_excerpt_more( $more ){
 add_filter( 'excerpt_length', function(){
     return 20;
 } );
+
+//функция проверки изображения
+function if_no_thumbnail(){
+    global $post;
+    if (has_post_thumbnail()){
+                    echo get_the_post_thumbnail( $post->ID, 'thumbnail');
+                } else {
+                  echo '<img src="' . get_template_directory_uri() . '/img/no-image.jpg" alt="нет картинки" height="150">';
+
+
+            }
+}
+
+// функция вывода автора поста
+function author_post() {
+    $first_name = get_the_author_meta('first_name');
+    $last_name = get_the_author_meta('last_name');
+    echo '<p>Автор записи: ' . $first_name . '  ' . $last_name . '</p>';
+
+}
+
+
+// Удаляет "Рубрика: ", "Метка: " и т.д. из заголовка архива
+add_filter( 'get_the_archive_title', function( $title ){
+    return preg_replace('~^[^:]+: ~', '', $title );
+});
+
+
+
+///цикл вывода записей
+function while_posts(){
+    if( have_posts() ){
+        // перебираем все имеющиеся посты и выводим их
+        while( have_posts() ){
+            the_post();
+            get_template_part('post', 'content');
+
+
+        }
+        echo '<div class="navigation">';
+        echo '<div class="next-posts">' . next_posts_link() . ' </div>';
+        echo '<div class="prev-posts">' . previous_posts_link() . '</div>';
+        echo '</div>';
+
+
+    }
+// постов нет
+    else {
+        echo '<h2>Записей нет.</h2>';
+    }
+}
+
 ?>
 

@@ -1,41 +1,13 @@
 <?php
-get_header('single');
+//get_header('single');
+get_header();
 ?>
+<div class="container">
+		<h1><?php the_title(); ?></a></h1>
+        <p>Пост опубликован: <?php the_time('d.m.y в H:i'); ?></p>
+        <p>Автор поста: <?php echo the_author(); ?> </p>
+        <?php the_content(); ?>
 
-    <a href="<?php echo get_home_url(); ?>">Ссылка на главную страницу</a>
+</div>
 
-
-<?php
-
-
-// проверяем есть ли посты в глобальном запросе - переменная $wp_query
-if( have_posts() ){
-	// перебираем все имеющиеся посты и выводим их
-	while( have_posts() ){
-		the_post();
-		?>
-
-		<div <?php post_class(); ?> id="post-<?php the_ID(); ?>">
-			<h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
-			<?php the_content(); ?>
-		</div>
-
-		<?php
-	}
-	?>
-
-	<div class="navigation">
-		<div class="next-posts"><?php next_posts_link(); ?></div>
-		<div class="prev-posts"><?php previous_posts_link(); ?></div>
-	</div>
-
-	<?php
-}
-// постов нет
-else {
-	echo "<h2>Записей нет.</h2>";
-}
-
-
-get_footer();
-?>
+<?php get_footer();?>
