@@ -1,1 +1,1 @@
-<div class="col-3 bg-primary"> ghhjkj</div>
+<div class="col-3"></div>

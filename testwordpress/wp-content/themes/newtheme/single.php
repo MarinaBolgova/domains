@@ -1,4 +1,4 @@
-<?php  get_header(); ?>hghi
+<?php  get_header(); ?>
     <div class="container">
         <h1><?php the_title(); ?></h1>
         <p> Пост опубликован: <?php the_time('d.m.y  в H:i');?>

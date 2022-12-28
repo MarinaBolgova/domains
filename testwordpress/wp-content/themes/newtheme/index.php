@@ -1,6 +1,9 @@
 <?php get_header();?>
+    <div class="main-heading">
+        <h1><?php the_title(); ?></h1>
+    </div>
     <div class="container">
-        <div class="row justify-content-center main-heading">
+        <div class="row justify-content-center">
             <?php get_sidebar();?>
             <div class="col">
                 <div class="row justify-content-center">
